@@ -1,4 +1,4 @@
-import { Link, Outlet } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 import {
   Activity,
   Building2,
@@ -20,7 +20,7 @@ const navigation = [
   { to: "/access", label: "智慧通行", icon: DoorOpen },
 ] as const;
 
-export function SmartBuildingShell() {
+export function SmartBuildingShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="app-canvas">
       <header className="topbar">
@@ -45,7 +45,7 @@ export function SmartBuildingShell() {
         </nav>
         <div className="system-live"><i />系统在线</div>
       </header>
-      <main className="dashboard-main"><Outlet /></main>
+      <main className="dashboard-main">{children}</main>
     </div>
   );
 }
