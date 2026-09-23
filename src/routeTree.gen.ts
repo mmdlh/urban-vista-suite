@@ -10,33 +10,115 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccessRouteImport } from './routes/access'
+import { Route as EnergyRouteImport } from './routes/energy'
+import { Route as EnvironmentRouteImport } from './routes/environment'
+import { Route as EquipmentRouteImport } from './routes/equipment'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as SpaceRouteImport } from './routes/space'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccessRoute = AccessRouteImport.update({
+  id: '/access',
+  path: '/access',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnergyRoute = EnergyRouteImport.update({
+  id: '/energy',
+  path: '/energy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnvironmentRoute = EnvironmentRouteImport.update({
+  id: '/environment',
+  path: '/environment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EquipmentRoute = EquipmentRouteImport.update({
+  id: '/equipment',
+  path: '/equipment',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SpaceRoute = SpaceRouteImport.update({
+  id: '/space',
+  path: '/space',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/access': typeof AccessRoute
+  '/energy': typeof EnergyRoute
+  '/environment': typeof EnvironmentRoute
+  '/equipment': typeof EquipmentRoute
+  '/security': typeof SecurityRoute
+  '/space': typeof SpaceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/access': typeof AccessRoute
+  '/energy': typeof EnergyRoute
+  '/environment': typeof EnvironmentRoute
+  '/equipment': typeof EquipmentRoute
+  '/security': typeof SecurityRoute
+  '/space': typeof SpaceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/access': typeof AccessRoute
+  '/energy': typeof EnergyRoute
+  '/environment': typeof EnvironmentRoute
+  '/equipment': typeof EquipmentRoute
+  '/security': typeof SecurityRoute
+  '/space': typeof SpaceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/access'
+    | '/energy'
+    | '/environment'
+    | '/equipment'
+    | '/security'
+    | '/space'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/access'
+    | '/energy'
+    | '/environment'
+    | '/equipment'
+    | '/security'
+    | '/space'
+  id:
+    | '__root__'
+    | '/'
+    | '/access'
+    | '/energy'
+    | '/environment'
+    | '/equipment'
+    | '/security'
+    | '/space'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccessRoute: typeof AccessRoute
+  EnergyRoute: typeof EnergyRoute
+  EnvironmentRoute: typeof EnvironmentRoute
+  EquipmentRoute: typeof EquipmentRoute
+  SecurityRoute: typeof SecurityRoute
+  SpaceRoute: typeof SpaceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/access': {
+      id: '/access'
+      path: '/access'
+      fullPath: '/access'
+      preLoaderRoute: typeof AccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/energy': {
+      id: '/energy'
+      path: '/energy'
+      fullPath: '/energy'
+      preLoaderRoute: typeof EnergyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/environment': {
+      id: '/environment'
+      path: '/environment'
+      fullPath: '/environment'
+      preLoaderRoute: typeof EnvironmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/equipment': {
+      id: '/equipment'
+      path: '/equipment'
+      fullPath: '/equipment'
+      preLoaderRoute: typeof EquipmentRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/space': {
+      id: '/space'
+      path: '/space'
+      fullPath: '/space'
+      preLoaderRoute: typeof SpaceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccessRoute: AccessRoute,
+  EnergyRoute: EnergyRoute,
+  EnvironmentRoute: EnvironmentRoute,
+  EquipmentRoute: EquipmentRoute,
+  SecurityRoute: SecurityRoute,
+  SpaceRoute: SpaceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
