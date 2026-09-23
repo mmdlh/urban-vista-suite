@@ -10,82 +10,76 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as DashboardRouteImport } from './routes/_dashboard'
-import { Route as DashboardAccessRouteImport } from './routes/_dashboard.access'
-import { Route as DashboardEnergyRouteImport } from './routes/_dashboard.energy'
-import { Route as DashboardEnvironmentRouteImport } from './routes/_dashboard.environment'
-import { Route as DashboardEquipmentRouteImport } from './routes/_dashboard.equipment'
-import { Route as DashboardSecurityRouteImport } from './routes/_dashboard.security'
-import { Route as DashboardSpaceRouteImport } from './routes/_dashboard.space'
+import { Route as AccessRouteImport } from './routes/access'
+import { Route as EnergyRouteImport } from './routes/energy'
+import { Route as EnvironmentRouteImport } from './routes/environment'
+import { Route as EquipmentRouteImport } from './routes/equipment'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as SpaceRouteImport } from './routes/space'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardRoute = DashboardRouteImport.update({
-  id: '/_dashboard',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const DashboardAccessRoute = DashboardAccessRouteImport.update({
+const AccessRoute = AccessRouteImport.update({
   id: '/access',
   path: '/access',
-  getParentRoute: () => DashboardRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardEnergyRoute = DashboardEnergyRouteImport.update({
+const EnergyRoute = EnergyRouteImport.update({
   id: '/energy',
   path: '/energy',
-  getParentRoute: () => DashboardRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardEnvironmentRoute = DashboardEnvironmentRouteImport.update({
+const EnvironmentRoute = EnvironmentRouteImport.update({
   id: '/environment',
   path: '/environment',
-  getParentRoute: () => DashboardRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardEquipmentRoute = DashboardEquipmentRouteImport.update({
+const EquipmentRoute = EquipmentRouteImport.update({
   id: '/equipment',
   path: '/equipment',
-  getParentRoute: () => DashboardRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardSecurityRoute = DashboardSecurityRouteImport.update({
+const SecurityRoute = SecurityRouteImport.update({
   id: '/security',
   path: '/security',
-  getParentRoute: () => DashboardRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
-const DashboardSpaceRoute = DashboardSpaceRouteImport.update({
+const SpaceRoute = SpaceRouteImport.update({
   id: '/space',
   path: '/space',
-  getParentRoute: () => DashboardRoute,
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/access': typeof DashboardAccessRoute
-  '/energy': typeof DashboardEnergyRoute
-  '/environment': typeof DashboardEnvironmentRoute
-  '/equipment': typeof DashboardEquipmentRoute
-  '/security': typeof DashboardSecurityRoute
-  '/space': typeof DashboardSpaceRoute
+  '/access': typeof AccessRoute
+  '/energy': typeof EnergyRoute
+  '/environment': typeof EnvironmentRoute
+  '/equipment': typeof EquipmentRoute
+  '/security': typeof SecurityRoute
+  '/space': typeof SpaceRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/access': typeof DashboardAccessRoute
-  '/energy': typeof DashboardEnergyRoute
-  '/environment': typeof DashboardEnvironmentRoute
-  '/equipment': typeof DashboardEquipmentRoute
-  '/security': typeof DashboardSecurityRoute
-  '/space': typeof DashboardSpaceRoute
+  '/access': typeof AccessRoute
+  '/energy': typeof EnergyRoute
+  '/environment': typeof EnvironmentRoute
+  '/equipment': typeof EquipmentRoute
+  '/security': typeof SecurityRoute
+  '/space': typeof SpaceRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/_dashboard': typeof DashboardRouteWithChildren
-  '/_dashboard/access': typeof DashboardAccessRoute
-  '/_dashboard/energy': typeof DashboardEnergyRoute
-  '/_dashboard/environment': typeof DashboardEnvironmentRoute
-  '/_dashboard/equipment': typeof DashboardEquipmentRoute
-  '/_dashboard/security': typeof DashboardSecurityRoute
-  '/_dashboard/space': typeof DashboardSpaceRoute
+  '/access': typeof AccessRoute
+  '/energy': typeof EnergyRoute
+  '/environment': typeof EnvironmentRoute
+  '/equipment': typeof EquipmentRoute
+  '/security': typeof SecurityRoute
+  '/space': typeof SpaceRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -109,18 +103,22 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/_dashboard'
-    | '/_dashboard/access'
-    | '/_dashboard/energy'
-    | '/_dashboard/environment'
-    | '/_dashboard/equipment'
-    | '/_dashboard/security'
-    | '/_dashboard/space'
+    | '/access'
+    | '/energy'
+    | '/environment'
+    | '/equipment'
+    | '/security'
+    | '/space'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  DashboardRoute: typeof DashboardRouteWithChildren
+  AccessRoute: typeof AccessRoute
+  EnergyRoute: typeof EnergyRoute
+  EnvironmentRoute: typeof EnvironmentRoute
+  EquipmentRoute: typeof EquipmentRoute
+  SecurityRoute: typeof SecurityRoute
+  SpaceRoute: typeof SpaceRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -132,83 +130,59 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_dashboard': {
-      id: '/_dashboard'
-      path: ''
-      fullPath: '/'
-      preLoaderRoute: typeof DashboardRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/_dashboard/access': {
-      id: '/_dashboard/access'
+    '/access': {
+      id: '/access'
       path: '/access'
       fullPath: '/access'
-      preLoaderRoute: typeof DashboardAccessRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof AccessRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_dashboard/energy': {
-      id: '/_dashboard/energy'
+    '/energy': {
+      id: '/energy'
       path: '/energy'
       fullPath: '/energy'
-      preLoaderRoute: typeof DashboardEnergyRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof EnergyRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_dashboard/environment': {
-      id: '/_dashboard/environment'
+    '/environment': {
+      id: '/environment'
       path: '/environment'
       fullPath: '/environment'
-      preLoaderRoute: typeof DashboardEnvironmentRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof EnvironmentRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_dashboard/equipment': {
-      id: '/_dashboard/equipment'
+    '/equipment': {
+      id: '/equipment'
       path: '/equipment'
       fullPath: '/equipment'
-      preLoaderRoute: typeof DashboardEquipmentRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof EquipmentRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_dashboard/security': {
-      id: '/_dashboard/security'
+    '/security': {
+      id: '/security'
       path: '/security'
       fullPath: '/security'
-      preLoaderRoute: typeof DashboardSecurityRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
     }
-    '/_dashboard/space': {
-      id: '/_dashboard/space'
+    '/space': {
+      id: '/space'
       path: '/space'
       fullPath: '/space'
-      preLoaderRoute: typeof DashboardSpaceRouteImport
-      parentRoute: typeof DashboardRoute
+      preLoaderRoute: typeof SpaceRouteImport
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface DashboardRouteChildren {
-  DashboardAccessRoute: typeof DashboardAccessRoute
-  DashboardEnergyRoute: typeof DashboardEnergyRoute
-  DashboardEnvironmentRoute: typeof DashboardEnvironmentRoute
-  DashboardEquipmentRoute: typeof DashboardEquipmentRoute
-  DashboardSecurityRoute: typeof DashboardSecurityRoute
-  DashboardSpaceRoute: typeof DashboardSpaceRoute
-}
-
-const DashboardRouteChildren: DashboardRouteChildren = {
-  DashboardAccessRoute: DashboardAccessRoute,
-  DashboardEnergyRoute: DashboardEnergyRoute,
-  DashboardEnvironmentRoute: DashboardEnvironmentRoute,
-  DashboardEquipmentRoute: DashboardEquipmentRoute,
-  DashboardSecurityRoute: DashboardSecurityRoute,
-  DashboardSpaceRoute: DashboardSpaceRoute,
-}
-
-const DashboardRouteWithChildren = DashboardRoute._addFileChildren(
-  DashboardRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  DashboardRoute: DashboardRouteWithChildren,
+  AccessRoute: AccessRoute,
+  EnergyRoute: EnergyRoute,
+  EnvironmentRoute: EnvironmentRoute,
+  EquipmentRoute: EquipmentRoute,
+  SecurityRoute: SecurityRoute,
+  SpaceRoute: SpaceRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
